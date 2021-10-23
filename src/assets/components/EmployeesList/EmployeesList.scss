@@ -1,0 +1,108 @@
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	outline: none;
+	font-family: "Roboto", -apple-system, system-ui, sans-serif;
+	box-sizing: border-box;
+}
+
+.app {
+	&__main {
+		flex: 1 1 auto;
+	}
+	&__row {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+
+		button {
+			align-self: start;
+		}
+	}
+	&__item {
+		display: flex;
+		justify-content: space-between;
+		border-bottom: 1px solid #93b7c0;
+		padding: 15px 0;
+	}
+	&__item.header {
+		background-color: #165c6d;
+		color: #fff;
+	}
+	&__item-column {
+		flex: 0 1 33.333%;
+		display: flex;
+		justify-content: space-between;
+	}
+	&__item-delete {
+		margin-left: 10px;
+	}
+	&__item-buttons > * {
+		padding: 0 12px;
+		line-height: 100%;
+	}
+}
+.popup {
+	background-color: #fff;
+	width: 540px;
+	border: 1px solid #165c6d;
+	position: absolute;
+	border-radius: 10px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	&__header {
+		color: #fff;
+		background-color: #165c6d;
+		line-height: 140%;
+		padding: 5px 15px 7px;
+		overflow: hidden;
+		border-radius: 10px 10px 0 0;
+	}
+	&__body {
+		display: flex;
+		flex-direction: column;
+		align-items: start;
+		bottom: 10px;
+		padding: 7px 25px;
+		& > *:not(:last-child) {
+			margin-bottom: 12px;
+		}
+	}
+	&__close {
+		color: gray;
+		font-size: 15px;
+		text-decoration: underline;
+		cursor: pointer;
+	}
+	&__field {
+		width: 100%;
+		padding: 5px;
+		border-radius: 5px;
+		border: 1px solid #165c6d;
+		outline: none;
+		&:focus {
+			border: 1px solid #16add3;
+		}
+	}
+	input,
+	a {
+		display: block;
+	}
+	button {
+		align-self: self-end;
+	}
+}
+.btn {
+	padding: 5px 20px;
+	border-radius: 5px;
+	color: #fff;
+	background-color: #165c6d;
+	cursor: pointer;
+	transition: background-color 0.3s;
+	&:hover {
+		background-color: #16add3;
+	}
+}
