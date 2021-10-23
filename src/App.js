@@ -1,24 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import EmployeeList from "./assets/components/EmployeesList/index";
-// import './App.css';
+import DB from "./assets/db.json";
 
 function App() {
+	const [lists, setLists] = useState(DB.lists);
+	const onAddEmployee = (obj) => {
+		const newList = [...lists, obj];
+		setLists(newList);
+	};
 	return (
 		<div className="app">
 			<div className="app__body">
 				<EmployeeList
-					items={[
-						{
+					onAdd={onAddEmployee}
+					items={
+						lists
+						/*[{
 							avatar: "../../img/avatar.png",
 							name: "Имя",
-							surename: "фамилия",
+							surname: "фамилия",
 						},
 						{
 							avatar: "",
 							name: "Имя1",
-							surename: "фамилия1",
+							surname: "фамилия1",
 						},
-					]}
+					]*/
+					}
 				/>
 			</div>
 		</div>

@@ -3,9 +3,25 @@ import React, {useState} from "react";
 import './EmployeesList.scss';
 import avatar from '../../img/avatar.png';
 
-const EmployeeList = ({items}) => {
+const EmployeeList = ({ items, onAdd}) => {
+	
+
 	const [visibleAddPopup, setVisibleAddPopup] = useState(false);
-	const [visibleEditPopup,setVisibleEditPopup] = useState(false);
+	const [visibleEditPopup, setVisibleEditPopup] = useState(false);
+	const [inputNameValue, setInputNameValue] = useState('');
+	const [inputsurnameValue, setInputsurnameValue] = useState('');
+	const addEmployee = () => {
+		if (!inputNameValue) alert('Введите Имя');
+		if (!inputsurnameValue) alert('Введите Фамилию');
+		onAdd({
+			"id": 1,
+			"name": inputNameValue,
+			"surname": inputsurnameValue
+		});
+		setInputNameValue ('');
+		setInputsurnameValue ('');
+	}
+	
 	 return (
 		 <div className="app__row">
 			 <div className="app__item header">
@@ -18,7 +34,7 @@ const EmployeeList = ({items}) => {
 					 <div key={index} className="app__item">
 						 <div className="app__item-column"><img src={avatar} alt="lost icon" /></div>
  						<div className="app__item-column">{item.name}</div> 
-						 <div className="app__item-column">{item.surename}
+						 <div className="app__item-column">{item.surname}
 							 <div className="app__item-buttons">
 								 <button className="app__item-edit"
 								  onClick={()=>setVisibleEditPopup(true)}
@@ -34,24 +50,32 @@ const EmployeeList = ({items}) => {
 			 {visibleAddPopup &&
 				 <div className="app__popup popup">
 					 <div className="popup__header">Создание сотрудника</div>
-					 <form className="popup__body" action="">
+					 <div className="popup__body">
 					 <a onClick={() => setVisibleAddPopup(false)}  className="popup__close">Назад к списку</a>
-						 <input className="popup__field" type="text" placeholder="Введите имя сотрудника" ></input>
-						 <input className="popup__field" type="text" placeholder="Введите фамилию сотрудника" ></input>
-						 <button>Сохранить</button>
-					 </form>
+					 <input
+						 value={inputNameValue}
+						 onChange= {e=>setInputNameValue(e.target.value) }
+						 className="popup__field" type="text" placeholder="Введите имя сотрудника" ></input>
+					 <input
+						  value={inputsurnameValue}
+						 onChange= {e=>setInputsurnameValue(e.target.value) }
+						 className="popup__field" type="text" placeholder="Введите фамилию сотрудника" ></input>
+					 <button
+						 onClick={addEmployee}
+						 className="btn">Сохранить</button>
+					 </div>
 				 
 				 </div>
 			 }
 			 	 {visibleEditPopup &&
 				 <div className="app__popup popup">
 					 <div className="popup__header">Редактирование сотрудника</div>
-					 <form className="popup__body" action="">
+					 <div className="popup__body">
 					 <a onClick={() => setVisibleEditPopup(false)} className="popup__close">Назад к списку</a>
 						 <input className="popup__field" type="text"></input>
 						 <input className="popup__field" type="text"></input>
 						 <button className="btn">Сохранить</button>
-					 </form>
+					 </div>
 				 
 				 </div>
 			 }
