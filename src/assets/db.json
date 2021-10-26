@@ -1,19 +1,14 @@
-
 {
-	"lists": [{
-			"id": 1,
-			"name": "sdf",
-			"surname": "sdfsf"
-		},
-		{
-			"id": 2,
-			"name": "dsf",
-			"surname": "sdf"
-		},
-		{
-			"id": 3,
-			"name": "sdf",
-			"surname": "sdfsf"
-		}
-	]
+  "lists": [
+    {
+      "id": 1,
+      "name": "sdf",
+      "surname": "sdfsf"
+    },
+    {
+      "name": "sdfsdf",
+      "surname": "sdfdsf",
+      "id": 2
+    }
+  ]
 }

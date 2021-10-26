@@ -21,9 +21,12 @@ function App() {
 			<div className="app__body">
 				{lists ? (
 					<EmployeeList
-						onRemove={(item) => console.log(item)}
-						onAdd={onAddEmployee}
+						onRemove={(id) => {
+							const newLists = lists.filter((item) => item.id !== id);
+							setLists(newLists);
+						}}
 						items={lists}
+						onAdd={onAddEmployee}
 					/>
 				) : (
 					"Загрузка..."
