@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import EmployeeList from "./assets/components/EmployeesList/index";
-import DB from "./assets/db.json";
+import axios from "axios";
+//import DB from "./assets/db.json";
 
 function App() {
-	const [lists, setLists] = useState(DB.lists);
+	const [lists, setLists] = useState(null);
+
+	useEffect(() => {
+		axios.get("http://localhost:3004/lists").then(({ data }) => {
+			setLists(data);
+		});
+	}, []);
+
 	const onAddEmployee = (obj) => {
 		const newList = [...lists, obj];
 		setLists(newList);
@@ -11,23 +19,15 @@ function App() {
 	return (
 		<div className="app">
 			<div className="app__body">
-				<EmployeeList
-					onAdd={onAddEmployee}
-					items={
-						lists
-						/*[{
-							avatar: "../../img/avatar.png",
-							name: "Имя",
-							surname: "фамилия",
-						},
-						{
-							avatar: "",
-							name: "Имя1",
-							surname: "фамилия1",
-						},
-					]*/
-					}
-				/>
+				{lists ? (
+					<EmployeeList
+						onRemove={(item) => console.log(item)}
+						onAdd={onAddEmployee}
+						items={lists}
+					/>
+				) : (
+					"Загрузка..."
+				)}
 			</div>
 		</div>
 	);

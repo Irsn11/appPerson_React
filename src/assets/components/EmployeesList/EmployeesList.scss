@@ -22,26 +22,62 @@
 		}
 	}
 	&__item {
+		$self: &;
 		display: flex;
 		justify-content: space-between;
 		border-bottom: 1px solid #93b7c0;
 		padding: 15px 0;
+		cursor: pointer;
+		transition: border 0.1s;
+		&:hover {
+			border: 1px solid #284046;
+		}
+		&:hover #{self}-edit {
+			opacity: 0.6;
+		}
+		&:hover #{self}-delete {
+			opacity: 0.6;
+		}
+
+		#{$self}-edit {
+			opacity: 0.6;
+			&:hover {
+				opacity: 1;
+			}
+		}
+		#{$self}-delete {
+			opacity: 0.6;
+			&:hover {
+				opacity: 1;
+			}
+		}
 	}
 	&__item.header {
 		background-color: #165c6d;
 		color: #fff;
+	}
+	&__item.header:hover {
+		border-bottom: 1px solid #93b7c0;
+		cursor: default;
 	}
 	&__item-column {
 		flex: 0 1 33.333%;
 		display: flex;
 		justify-content: space-between;
 	}
-	&__item-delete {
-		margin-left: 10px;
+	&__item-buttons {
+		display: flex;
+		align-items: center;
 	}
+	&__item-delete,
+	&__item-edit {
+		img {
+			display: block;
+		}
+	}
+
 	&__item-buttons > * {
 		padding: 0 12px;
-		line-height: 100%;
 	}
 }
 .popup {

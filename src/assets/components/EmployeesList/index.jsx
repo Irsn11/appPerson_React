@@ -2,24 +2,40 @@ import React, {useState} from "react";
 //import avatar from "../img/avatar.png";
 import './EmployeesList.scss';
 import avatar from '../../img/avatar.png';
-
-const EmployeeList = ({ items, onAdd}) => {
+import closeIcon from '../../img/close.svg';
+import editIcon from '../../img/edit.svg';
+const EmployeeList = ({ items, onAdd,onRemove}) => {
 	
 
 	const [visibleAddPopup, setVisibleAddPopup] = useState(false);
 	const [visibleEditPopup, setVisibleEditPopup] = useState(false);
 	const [inputNameValue, setInputNameValue] = useState('');
 	const [inputsurnameValue, setInputsurnameValue] = useState('');
+	const onClose = () => {
+	  setInputNameValue ('');
+		setInputsurnameValue('');
+		setVisibleEditPopup(false);
+		setVisibleAddPopup(false);
+}
+	const removeEmploee = (item)=>{
+		if (window.confirm("Удалить из списка?")) 
+		onRemove(item);
+}
 	const addEmployee = () => {
-		if (!inputNameValue) alert('Введите Имя');
-		if (!inputsurnameValue) alert('Введите Фамилию');
+		if (!inputNameValue) {
+			alert('Введите Имя');
+			return;
+		};
+		if (!inputsurnameValue) {
+			alert('Введите Фамилию');
+			return;
+		};
 		onAdd({
 			"id": 1,
 			"name": inputNameValue,
 			"surname": inputsurnameValue
 		});
-		setInputNameValue ('');
-		setInputsurnameValue ('');
+		onClose()
 	}
 	
 	 return (
@@ -36,10 +52,16 @@ const EmployeeList = ({ items, onAdd}) => {
  						<div className="app__item-column">{item.name}</div> 
 						 <div className="app__item-column">{item.surname}
 							 <div className="app__item-buttons">
-								 <button className="app__item-edit"
+								 <div className="app__item-edit"
 								  onClick={()=>setVisibleEditPopup(true)}
-								 >/</button>
-							 <button className="app__item-delete ">X</button>
+								 ><img src={editIcon} alt="edit icon" /> </div>
+								 <div className="app__item-delete ">
+									 <img
+										 onClick={()=>removeEmploee(item)}
+										 src={closeIcon}
+										 alt="close icon"
+									 />
+								 </div>
 							 </div>
 					 </div>
 					</div>
@@ -51,7 +73,7 @@ const EmployeeList = ({ items, onAdd}) => {
 				 <div className="app__popup popup">
 					 <div className="popup__header">Создание сотрудника</div>
 					 <div className="popup__body">
-					 <a onClick={() => setVisibleAddPopup(false)}  className="popup__close">Назад к списку</a>
+					 <a onClick={onClose}  className="popup__close">Назад к списку</a>
 					 <input
 						 value={inputNameValue}
 						 onChange= {e=>setInputNameValue(e.target.value) }
@@ -71,7 +93,7 @@ const EmployeeList = ({ items, onAdd}) => {
 				 <div className="app__popup popup">
 					 <div className="popup__header">Редактирование сотрудника</div>
 					 <div className="popup__body">
-					 <a onClick={() => setVisibleEditPopup(false)} className="popup__close">Назад к списку</a>
+					 <a onClick={onClose} className="popup__close">Назад к списку</a>
 						 <input className="popup__field" type="text"></input>
 						 <input className="popup__field" type="text"></input>
 						 <button className="btn">Сохранить</button>
