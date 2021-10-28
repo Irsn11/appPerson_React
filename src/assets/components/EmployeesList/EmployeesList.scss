@@ -12,7 +12,7 @@
 		flex: 1 1 auto;
 	}
 	&__row {
-		max-width: 750px;
+		min-width: 750px;
 		height: 100%;
 		display: flex;
 		flex-direction: column;
@@ -25,6 +25,7 @@
 		$self: &;
 		display: flex;
 		justify-content: flex-start;
+
 		border-bottom: 1px solid #93b7c0;
 		padding: 15px 0;
 		cursor: pointer;
@@ -65,8 +66,17 @@
 	}
 	&__item-column {
 		flex: 0 1 25%;
-		// display: flex;
-		// justify-content: space-between;
+
+		&:first-child,
+		&:last-child {
+			flex: 0 0 10%;
+		}
+		&:nth-child(3) {
+			flex: 0 1 50%;
+		}
+		&:first-child {
+			margin-left: 10px;
+		}
 	}
 	&__item-buttons {
 		display: flex;
@@ -85,7 +95,7 @@
 }
 .popup {
 	background-color: #fff;
-	width: 540px;
+	max-width: 540px;
 	border: 1px solid #165c6d;
 	position: absolute;
 	border-radius: 10px;

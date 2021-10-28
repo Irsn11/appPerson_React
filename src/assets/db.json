@@ -3,7 +3,7 @@
     {
       "id": 1,
       "firstName": "Иван",
-      "lastName": "Гильдебрант"
+      "lastName": "Гильдебран"
     },
     {
       "firstName": "Роман",
@@ -11,7 +11,7 @@
       "id": 3
     },
     {
-      "firstName": "Полина",
+      "firstName": "Полин",
       "lastName": "Гуль",
       "id": 4
     }

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import EmployeeList from "./assets/components/EmployeesList/index";
 import axios from "axios";
-//import DB from "./assets/db.json";
 
+import EmployeeList from "./assets/components/EmployeesList/index";
 function App() {
 	const [persons, setPersons] = useState(null);
 	const [activeItem, setActiveItem] = useState(null);
@@ -19,7 +18,6 @@ function App() {
 	};
 
 	const onEditEmployee = (firstName, id, lastName) => {
-		console.log("id, firstName, lastName: ", id, firstName, lastName);
 		const newList = persons.map((item) => {
 			if (item.id === id) {
 				item.firstName = firstName;
@@ -41,6 +39,8 @@ function App() {
 						}}
 						setActiveItem={setActiveItem}
 						items={persons}
+						activeItem={activeItem}
+						onClickItem={(item) => setActiveItem(item)}
 						onAdd={onAddEmployee}
 						onEdit={onEditEmployee}
 					/>
