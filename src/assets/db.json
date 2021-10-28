@@ -1,14 +1,19 @@
 {
-  "lists": [
+  "persons": [
     {
       "id": 1,
-      "name": "sdf",
-      "surname": "sdfsf"
+      "firstName": "Иван",
+      "lastName": "Гильдебрант"
     },
     {
-      "name": "sdfsdf",
-      "surname": "sdfdsf",
-      "id": 2
+      "firstName": "Роман",
+      "lastName": "Матвейчук",
+      "id": 3
+    },
+    {
+      "firstName": "Полина",
+      "lastName": "Гуль",
+      "id": 4
     }
   ]
 }

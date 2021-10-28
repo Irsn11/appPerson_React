@@ -4,29 +4,45 @@ import axios from "axios";
 //import DB from "./assets/db.json";
 
 function App() {
-	const [lists, setLists] = useState(null);
+	const [persons, setPersons] = useState(null);
+	const [activeItem, setActiveItem] = useState(null);
 
 	useEffect(() => {
-		axios.get("http://localhost:3004/lists").then(({ data }) => {
-			setLists(data);
+		axios.get("http://localhost:3004/persons").then(({ data }) => {
+			setPersons(data);
 		});
 	}, []);
 
 	const onAddEmployee = (obj) => {
-		const newList = [...lists, obj];
-		setLists(newList);
+		const newList = [...persons, obj];
+		setPersons(newList);
 	};
+
+	const onEditEmployee = (firstName, id, lastName) => {
+		console.log("id, firstName, lastName: ", id, firstName, lastName);
+		const newList = persons.map((item) => {
+			if (item.id === id) {
+				item.firstName = firstName;
+				item.lastName = lastName;
+			}
+			return item;
+		});
+		setPersons(newList);
+	};
+
 	return (
 		<div className="app">
 			<div className="app__body">
-				{lists ? (
+				{persons ? (
 					<EmployeeList
 						onRemove={(id) => {
-							const newLists = lists.filter((item) => item.id !== id);
-							setLists(newLists);
+							const newPersons = persons.filter((item) => item.id !== id);
+							setPersons(newPersons);
 						}}
-						items={lists}
+						setActiveItem={setActiveItem}
+						items={persons}
 						onAdd={onAddEmployee}
+						onEdit={onEditEmployee}
 					/>
 				) : (
 					"Загрузка..."
