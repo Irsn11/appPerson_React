@@ -1,0 +1,69 @@
+.list {
+	display: flex;
+	flex-direction: column;
+}
+.item {
+	$self: &;
+	display: flex;
+	justify-content: flex-start;
+
+	border-bottom: 1px solid #93b7c0;
+	padding: 15px 0;
+	cursor: pointer;
+	transition: border 0.1s;
+
+	&.active {
+		background: #e7ebec;
+	}
+	&:hover {
+		border: 1px solid #284046;
+	}
+	&:hover #{self}-edit {
+		opacity: 0.6;
+	}
+	&:hover #{self}-delete {
+		opacity: 0.6;
+	}
+
+	#{$self}-edit {
+		opacity: 0.6;
+		&:hover {
+			opacity: 1;
+		}
+	}
+	#{$self}-delete {
+		opacity: 0.6;
+		&:hover {
+			opacity: 1;
+		}
+	}
+
+	&__column {
+		flex: 0 1 25%;
+		border: 1px solid red;
+		&:first-child,
+		&:last-child {
+			flex: 0 0 10%;
+		}
+		&:nth-child(3) {
+			flex: 0 1 50%;
+		}
+		&:first-child {
+			margin-left: 10px;
+		}
+	}
+	&__buttons {
+		display: flex;
+		align-items: center;
+	}
+	&__delete,
+	&__edit {
+		img {
+			display: block;
+		}
+	}
+
+	&__buttons > * {
+		padding: 0 12px;
+	}
+}
