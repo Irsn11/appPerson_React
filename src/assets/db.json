@@ -2,13 +2,8 @@
   "persons": [
     {
       "firstName": "Полина",
-      "lastName": "Гулz",
+      "lastName": "Матвейчук",
       "id": 4
-    },
-    {
-      "firstName": "fg",
-      "lastName": "fdg",
-      "id": 5
     }
   ]
 }

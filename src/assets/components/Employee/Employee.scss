@@ -1,12 +1,13 @@
 .list {
 	display: flex;
 	flex-direction: column;
+	height: 100%;
 }
 .item {
 	$self: &;
 	display: flex;
 	justify-content: flex-start;
-
+	align-items: center;
 	border-bottom: 1px solid #93b7c0;
 	padding: 15px 0;
 	cursor: pointer;
@@ -39,17 +40,20 @@
 	}
 
 	&__column {
-		flex: 0 1 25%;
-		border: 1px solid red;
-		&:first-child,
+		min-width: 30px;
+		word-break: break-all;
+		font-size: 0.8em;
 		&:last-child {
-			flex: 0 0 10%;
+			flex: 0 0 114px;
 		}
+		&:nth-child(2),
 		&:nth-child(3) {
+			padding: 0 5px;
 			flex: 0 1 50%;
 		}
 		&:first-child {
-			margin-left: 10px;
+			flex: 0 0 72px;
+			padding: 0 15px;
 		}
 	}
 	&__buttons {
@@ -63,7 +67,33 @@
 		}
 	}
 
-	&__buttons > * {
-		padding: 0 12px;
+	&__buttons {
+		padding: 0 24px;
+		& > *:not(:last-child) {
+			margin-right: 24px;
+		}
+	}
+}
+@media (max-width: 500px) {
+	.app {
+		.item {
+			&__column {
+				font-size: 0.6em;
+				&:last-child {
+					flex: 0 0 78px;
+				}
+
+				&:first-child {
+					flex: 0 0 30px;
+					padding: 0 5px;
+				}
+			}
+			&__buttons {
+				padding: 0 12px;
+				& > *:not(:last-child) {
+					margin-right: 12px;
+				}
+			}
+		}
 	}
 }
