@@ -12,9 +12,13 @@
     "node-sass": "^6.0.1",
     "react": "^17.0.2",
     "react-app-polyfill": "^2.0.0",
+    "react-async": "^10.0.1",
     "react-dom": "^17.0.2",
+    "react-hot-toast": "^2.1.1",
     "react-notifications-component": "^3.1.0",
     "react-scripts": "4.0.3",
+    "siiimple-toast": "^3.1.7",
+    "sweetalert": "^2.1.2",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
@@ -37,7 +41,7 @@
       "not op_mini all"
     ],
     "development": [
-			"ie 11",
+      "ie 11",
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"

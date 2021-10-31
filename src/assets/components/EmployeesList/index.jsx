@@ -1,14 +1,15 @@
 import React, {useState} from "react";
 
+
 import Employee from '../Employee'
 import AddPopup from '../AddPopup'
 
 import './EmployeesList.scss';
 
 const EmployeeList = ({ items, onAdd, onRemove, onClickItem, activeItem, onEdit}) => {
-	
+
 	const [visibleAddPopup, setVisibleAddPopup] = useState(false);
- 
+
 	const onClose = () => {
 		setVisibleAddPopup(false);
 	}
@@ -38,10 +39,9 @@ const EmployeeList = ({ items, onAdd, onRemove, onClickItem, activeItem, onEdit}
 			<AddPopup
 				onAdd={onAdd}
 				onClose={onClose}
-			/>
+				/>
 			}
 	</div>
-	
 )}
 
 export default EmployeeList;

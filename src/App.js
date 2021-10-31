@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+import toast from "siiimple-toast";
+import "siiimple-toast/dist/style.css";
+
 import EmployeeList from "./assets/components/EmployeesList/index";
+
 function App() {
 	const [persons, setPersons] = useState(null);
 	const [activeItem, setActiveItem] = useState(null);

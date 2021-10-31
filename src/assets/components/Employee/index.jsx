@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import axios from "axios";
 import classNames from "classnames";
+import swal from 'sweetalert';
 
 import EditPopup from '../EditPopup'
 
@@ -18,14 +19,24 @@ const Employee = ({ items, onRemove, onClickItem, activeItem, onEdit}) => {
 	const [inputEditLastNameValue, setInputEditLastNameValue] = useState('');
 
 	const onClose = () => {
-			setVisibleEditPopup(false);
+		setVisibleEditPopup(false);
 	}
 
-	const removeEmploee = item => {
-		if (window.confirm("Удалить из списка?")) { 
-		axios.delete('http://localhost:3004/persons/' + item.id)
-			.then(() => {
-				onRemove(item.id);
+	async function removeEmploee(item) {
+		
+		const willDelete =  await  swal({
+			text: "Вы уверены, что хотите удалить запись?",
+			icon: "warning",
+			buttons: ["Нет", "Да"],
+			dangerMode: true,
+			});
+		
+		if (willDelete) { 
+			axios
+				.delete('http://localhost:3004/persons/' + item.id)
+				.then(() => {
+					onRemove(item.id);
+					swal("Удалено!", "Запись была удалена!", "success");
 			});
 		}
 	}
@@ -34,7 +45,7 @@ const Employee = ({ items, onRemove, onClickItem, activeItem, onEdit}) => {
 		setVisibleEditPopup(true);
 	}
 	
-const editEmployee = () => {
+	const editEmployee = () => {
 		onEdit(inputEditNameValue, editID, inputEditLastNameValue)
 		axios.patch("http://localhost:3004/persons/" + editID, {
 			firstName: inputEditNameValue,

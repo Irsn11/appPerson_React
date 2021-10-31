@@ -17,7 +17,8 @@
 		flex-direction: column;
 
 		button {
-			align-self: start;
+			align-self: flex-start;
+			margin: 15px;
 		}
 	}
 	&__header {

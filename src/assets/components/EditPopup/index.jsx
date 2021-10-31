@@ -1,32 +1,34 @@
 import React, {useState} from "react";
 import axios from "axios";
+import swal from 'sweetalert';
 
 import './EditPopup.scss';
 
-const EditPopup = ({  onClose, onRemove, onEdit, inputNameValue, inputLastNameValue, editId}) => {
+const EditPopup = ({  onClose, onEdit, inputNameValue, inputLastNameValue, editId}) => {
 	
 	const [inputEditNameValue, setInputEditNameValue] = useState(inputNameValue);
 	const [editID, setEditID] = useState(editId);
 	const [inputEditLastNameValue, setInputEditLastNameValue] = useState(inputLastNameValue);
 
-	const removeEmploee = item => {
-		if (window.confirm("Удалить из списка?")) { 
-		axios.delete('http://localhost:3004/persons/' + item.id)
-			.then(() => {
-				onRemove(item.id);
-			});
-		}
-	}
 
 	const editEmployee = () => {
 		onEdit(inputEditNameValue, editID, inputEditLastNameValue)
-		axios.patch("http://localhost:3004/persons/" + editID, {
-			firstName: inputEditNameValue,
-			lastName:inputEditLastNameValue
-		}).catch(() => {
-			alert('Не удалось обновить!')
-		});
-		onClose();
+		axios
+			.patch("http://localhost:3004/persons/" + editID, {
+				firstName:inputEditNameValue,
+				lastName:inputEditLastNameValue
+			})
+			.catch(() => {
+				swal({
+					icon: "error",
+					text: `Не удалось обновить!`
+				});
+			});
+			onClose();
+			swal({
+				icon: "success",
+				text: `Запись обновлена!`
+			});
 	}
 
 	return (

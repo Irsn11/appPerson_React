@@ -1,36 +1,49 @@
 import React, {useState} from "react";
 import axios from "axios";
+import swal from 'sweetalert';
 
 import './AddPopup.scss';
 
-const AddPopup = ({  onClose, onAdd}) => {
+const AddPopup = ({onClose, onAdd}) => {
 	
  	const [inputNameValue, setInputNameValue] = useState('');
 	const [inputLastNameValue, setInputLastNameValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
 	const addEmployee = () => {
+		
 		if (!inputNameValue) {
-			alert('Введите Имя');
+			swal({ text: "Введите Имя!"});
 			return;
 		};
 		if (!inputLastNameValue) {
-			alert('Введите Фамилию');
+			swal({ text: "Введите Фамилию!" });
 			return;
 		};
-		//переклюаем состояние загрузки
+		
 		setIsLoading(true);
-    axios.post("http://localhost:3004/persons", {
-		firstName: inputNameValue,
-		lastName: inputLastNameValue,
-		})
+		axios
+			.post("http://localhost:3004/persons", {
+				firstName: inputNameValue,
+				lastName: inputLastNameValue,
+			})
 			.then(({data}) => {
-			onAdd(data);
-			onClose();
+				onAdd(data);
+				onClose();
+			})
+			.catch(() => {
+				swal({
+					icon: "error",
+					text: "Не удалось добавить запись!"
+				});
 			})
 			.finally(() => {
         setIsLoading(false);
-      });
+			});
+			swal({
+				icon: "success",
+				text: "Запись добавлена!"
+			});
 	}
 
 	return (
