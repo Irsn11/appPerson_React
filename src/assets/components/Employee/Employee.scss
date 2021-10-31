@@ -19,20 +19,20 @@
 	&:hover {
 		border: 1px solid #284046;
 	}
-	&:hover #{self}-edit {
+	&:hover #{self}__edit {
 		opacity: 0.6;
 	}
-	&:hover #{self}-delete {
+	&:hover #{self}__delete {
 		opacity: 0.6;
 	}
 
-	#{$self}-edit {
+	#{$self}__edit {
 		opacity: 0.6;
 		&:hover {
 			opacity: 1;
 		}
 	}
-	#{$self}-delete {
+	#{$self}__delete {
 		opacity: 0.6;
 		&:hover {
 			opacity: 1;

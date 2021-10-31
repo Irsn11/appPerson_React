@@ -4,6 +4,11 @@
       "firstName": "Полина",
       "lastName": "Матвейчук",
       "id": 4
+    },
+    {
+      "firstName": "Руслан",
+      "lastName": "Руднев",
+      "id": 5
     }
   ]
 }
